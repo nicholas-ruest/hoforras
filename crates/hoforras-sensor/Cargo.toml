@@ -1,0 +1,25 @@
+[package]
+name = "hoforras-sensor"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Sensing & Ingestion context (DDD-02). IngestionPipeline + rvcsi/Ed25519 reference adapters."
+
+[dependencies]
+hoforras-domain = { workspace = true }
+hoforras-ports = { workspace = true }
+ed25519-dalek = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+
+[dev-dependencies]
+hoforras-ports = { workspace = true, features = ["mock"] }
+mockall = { workspace = true }
+tokio = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name = "ingest_throughput"
+harness = false

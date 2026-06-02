@@ -1,0 +1,48 @@
+# Hőforrás Budapest — Cargo workspace root.
+# Layering (ADR-0002 / ADR-0003): domain ← ports ← {sensor, broker, node, mesh}.
+# hoforras-domain and hoforras-ports MUST NOT depend on any daa_*/rvm_*/qudag/ruvector/ruv_*
+# crate. Enforced by scripts/layering-lint.sh (run in CI).
+[workspace]
+resolver = "2"
+members = [
+    "crates/hoforras-domain",
+    "crates/hoforras-ports",
+    "crates/hoforras-sensor",
+    "crates/hoforras-broker",
+    "crates/hoforras-node",
+    "crates/hoforras-mesh",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+rust-version = "1.85"
+
+[workspace.dependencies]
+# --- pure domain / ports dependencies (NO Ruv crates) ---
+serde = { version = "1", features = ["derive"] }
+serde-big-array = "0.5"
+serde_json = "1"
+postcard = { version = "1", features = ["use-std"] }
+thiserror = "2"
+async-trait = "0.1"
+mockall = "0.13"
+sha2 = "0.10"
+ed25519-dalek = "2"
+proptest = "1"
+# --- runtime / app (node binary) ---
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# --- dev / bench ---
+criterion = { version = "0.5", default-features = false }
+trybuild = "1"
+
+# Internal crates
+hoforras-domain = { path = "crates/hoforras-domain" }
+hoforras-ports = { path = "crates/hoforras-ports" }
+
+[profile.release]
+lto = true
+codegen-units = 1

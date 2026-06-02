@@ -1,0 +1,24 @@
+[package]
+name = "hoforras-domain"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Pure domain value types and ubiquitous language for Hőforrás (ADR-0003). No I/O, no Ruv-crate dependencies."
+
+# CRITICAL (ADR-0002/0003): this crate must depend on NOTHING from the Ruv ecosystem.
+# Allowed: serde, postcard, thiserror, serde_json. Verified by scripts/layering-lint.sh.
+[dependencies]
+serde = { workspace = true }
+serde-big-array = { workspace = true }
+serde_json = { workspace = true }
+postcard = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+trybuild = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name = "serde_roundtrip"
+harness = false

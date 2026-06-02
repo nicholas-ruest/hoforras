@@ -1,0 +1,14 @@
+[package]
+name = "hoforras-broker"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Thermal Market & Brokerage core domain (DDD-01). Skeleton — implemented in Prompt 7."
+
+[dependencies]
+hoforras-domain = { workspace = true }
+hoforras-ports = { workspace = true }
+
+[dev-dependencies]
+hoforras-ports = { workspace = true, features = ["mock"] }

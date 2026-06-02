@@ -1,0 +1,15 @@
+//! # hoforras-node (library)
+//!
+//! The Appliance's node-local contexts. **P1 — Node Isolation & Security (DDD-04)** is implemented
+//! here: it is the Open Host Service / Shared Kernel that every other context relies on for
+//! capability-gated access and witnessed audit.
+//!
+//! Per ADR-0004, the coherence/isolation logic is **synchronous and runs in-process, off the tokio
+//! async path**. The `rvm-*` substrate is not available in this environment, so the adapters are
+//! **reference in-process implementations** behind the `hoforras-ports` traits (ADR-0001 makes them
+//! swappable for the real RVM crates later, with no change to the domain units).
+//!
+//! Forecasting (DDD-03) and Thermal Memory (DDD-06) also live in this crate and are implemented in
+//! Prompts 3 and 4.
+
+pub mod isolation;

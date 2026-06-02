@@ -1,0 +1,33 @@
+[package]
+name = "hoforras-node"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Hőforrás Appliance binary + Node Isolation/Forecasting/Memory contexts (DDD-04/03/06). P1: Node Isolation & Security implemented."
+
+[lib]
+name = "hoforras_node"
+path = "src/lib.rs"
+
+[[bin]]
+name = "hoforras-node"
+path = "src/main.rs"
+
+[dependencies]
+hoforras-domain = { workspace = true }
+hoforras-ports = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+sha2 = { workspace = true }
+
+[dev-dependencies]
+hoforras-ports = { workspace = true, features = ["mock"] }
+mockall = { workspace = true }
+proptest = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name = "isolation_path"
+harness = false

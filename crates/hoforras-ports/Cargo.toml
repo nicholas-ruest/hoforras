@@ -1,0 +1,22 @@
+[package]
+name = "hoforras-ports"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Hexagonal port traits over hoforras-domain types (ADR-0002/0003). Mockable via mockall. No Ruv-crate dependencies."
+
+# CRITICAL (ADR-0002/0003): no Ruv-ecosystem dependency. Allowed: domain, async-trait, mockall.
+[dependencies]
+hoforras-domain = { workspace = true }
+async-trait = { workspace = true }
+mockall = { workspace = true, optional = true }
+
+[features]
+# Enables `mockall::automock`-generated mocks for downstream test crates:
+#   hoforras-ports = { workspace = true, features = ["mock"] }
+mock = ["dep:mockall"]
+
+[dev-dependencies]
+mockall = { workspace = true }
+tokio = { workspace = true }

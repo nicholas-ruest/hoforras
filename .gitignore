@@ -1,0 +1,9 @@
+# Rust build artifacts
+/target
+**/*.rs.bk
+# trybuild scratch output
+**/wip/
+
+# Claude Code / claude-flow local & runtime state
+.claude/settings.local.json
+.claude-flow/

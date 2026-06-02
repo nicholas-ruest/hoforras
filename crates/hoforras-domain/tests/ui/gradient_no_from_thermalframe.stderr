@@ -1,0 +1,7 @@
+error[E0277]: the trait bound `Gradient: From<ThermalFrame>` is not satisfied
+ --> tests/ui/gradient_no_from_thermalframe.rs:8:11
+  |
+8 |     frame.into()
+  |           ^^^^ the trait `From<ThermalFrame>` is not implemented for `Gradient`
+  |
+  = note: required for `ThermalFrame` to implement `Into<Gradient>`
