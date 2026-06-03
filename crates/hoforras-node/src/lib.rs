@@ -18,3 +18,4 @@ pub mod appliance;
 pub mod forecast;
 pub mod isolation;
 pub mod memory;
+pub mod recovery;

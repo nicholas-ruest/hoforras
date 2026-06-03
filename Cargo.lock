@@ -656,6 +656,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "hoforras-planning"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "criterion",
+ "hoforras-domain",
+ "hoforras-ports",
+ "proptest",
+ "tokio",
+]
+
+[[package]]
 name = "hoforras-ports"
 version = "0.1.0"
 dependencies = [

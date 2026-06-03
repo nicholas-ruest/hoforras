@@ -11,6 +11,7 @@ members = [
     "crates/hoforras-broker",
     "crates/hoforras-node",
     "crates/hoforras-mesh",
+    "crates/hoforras-planning",
 ]
 
 [workspace.package]
@@ -48,6 +49,7 @@ hoforras-ports = { path = "crates/hoforras-ports" }
 hoforras-sensor = { path = "crates/hoforras-sensor" }
 hoforras-broker = { path = "crates/hoforras-broker" }
 hoforras-mesh = { path = "crates/hoforras-mesh" }
+hoforras-planning = { path = "crates/hoforras-planning" }
 
 [profile.release]
 lto = true

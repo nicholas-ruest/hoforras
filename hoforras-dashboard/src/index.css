@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+/* ── Hőforrás · Cognitum (COGS) design system ─────────────────────────────────
+   Ported from COGS_UI_Template/v0-chrome.css — refined dark management console. */
+:root {
+  --background: 220 25% 6%;
+  --foreground: 210 20% 92%;
+  --card: 220 20% 10%;
+  --card-foreground: 210 20% 92%;
+  --primary: 185 80% 50%; /* cyan — mesh / data */
+  --primary-foreground: 220 25% 6%;
+  --secondary: 220 20% 14%;
+  --secondary-foreground: 210 20% 80%;
+  --accent: 142 70% 50%; /* green — healthy / savings */
+  --accent-foreground: 220 25% 6%;
+  --thermal: 24 90% 55%; /* orange — heat / hot springs */
+  --muted: 220 15% 15%;
+  --muted-foreground: 215 15% 55%;
+  --destructive: 0 65% 50%;
+  --border: 220 15% 18%;
+  --input: 220 15% 18%;
+  --ring: 185 80% 50%;
+  --radius: 0.75rem;
+  --gradient-card: linear-gradient(180deg, hsl(220 20% 12%) 0%, hsl(220 20% 8%) 100%);
+  --shadow-card: 0 8px 32px -8px hsl(220 25% 2% / 0.8);
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@theme {
+  --color-bg: hsl(220 25% 6%);
+  --color-card: hsl(220 20% 10%);
+  --color-primary: hsl(185 80% 50%);
+  --color-accent: hsl(142 70% 50%);
+  --color-thermal: hsl(24 90% 55%);
+  --color-muted: hsl(215 15% 55%);
+  --color-line: hsl(220 15% 18%);
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: var(--font-display);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary) / 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* ── COGS components ─────────────────────────────────────────────────────── */
+.card {
+  background: var(--gradient-card);
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+.card-h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+}
+.card-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: hsl(var(--foreground));
+}
+.card-sub {
+  font-size: 0.6875rem;
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-mono);
+}
+
+.kpi {
+  background: var(--gradient-card);
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.kpi-ic {
+  width: 38px;
+  height: 38px;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: hsl(var(--primary) / 0.12);
+  color: hsl(var(--primary));
+}
+.kpi-ic.accent {
+  background: hsl(var(--accent) / 0.12);
+  color: hsl(var(--accent));
+}
+.kpi-ic.thermal {
+  background: hsl(var(--thermal) / 0.14);
+  color: hsl(var(--thermal));
+}
+.kpi-label {
+  font-size: 0.6875rem;
+  color: hsl(var(--muted-foreground));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.kpi-val {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  line-height: 1.2;
+  margin-top: 0.1rem;
+}
+.kpi-sub {
+  font-size: 0.6875rem;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.1rem;
+  font-family: var(--font-mono);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.badge.online {
+  background: hsl(142 70% 50% / 0.1);
+  color: hsl(142 70% 62%);
+  border-color: hsl(142 70% 50% / 0.25);
+}
+.badge.primary {
+  background: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary) / 0.25);
+}
+.badge.thermal {
+  background: hsl(var(--thermal) / 0.12);
+  color: hsl(24 90% 65%);
+  border-color: hsl(var(--thermal) / 0.3);
+}
+.badge.advisory {
+  background: hsl(45 90% 55% / 0.12);
+  color: hsl(45 90% 65%);
+  border-color: hsl(45 90% 55% / 0.3);
+}
+.badge.danger {
+  background: hsl(0 65% 50% / 0.12);
+  color: hsl(0 70% 70%);
+  border-color: hsl(0 65% 50% / 0.25);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot.up {
+  background: hsl(142 70% 50%);
+  box-shadow: 0 0 6px hsl(142 70% 50% / 0.6);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.45rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn:hover {
+  border-color: hsl(var(--primary) / 0.5);
+}
+.btn.on {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+  font-weight: 600;
+  box-shadow: 0 4px 10px -2px hsl(var(--primary) / 0.35);
+}
+
+/* ── MapLibre dark theme + custom markers ─────────────────────────────────── */
+.maplibregl-map {
+  font-family: var(--font-mono);
+}
+.maplibregl-ctrl-attrib {
+  background: hsl(220 25% 6% / 0.7) !important;
+  color: hsl(var(--muted-foreground)) !important;
+  font-size: 9px !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: hsl(var(--primary)) !important;
+}
+.maplibregl-ctrl-group {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+.maplibregl-ctrl-group button {
+  background: hsl(var(--card)) !important;
+}
+.maplibregl-ctrl-group button + button {
+  border-top-color: hsl(var(--border)) !important;
+}
+.maplibregl-ctrl-icon {
+  filter: invert(0.9) hue-rotate(180deg);
+}
+.maplibregl-popup-content {
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 0.6rem 0.75rem;
+}
+.maplibregl-popup-tip {
+  border-top-color: hsl(var(--card)) !important;
+  border-bottom-color: hsl(var(--card)) !important;
+}
+.maplibregl-popup-close-button {
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+  padding-right: 0.3rem;
+}
+
+.map-pin {
+  border-radius: 9999px;
+  border: 2px solid hsl(220 25% 6%);
+}
+.map-pin.seed {
+  background: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.35), 0 0 10px hsl(var(--primary) / 0.6);
+}
+.map-pin.spring {
+  background: hsl(var(--thermal));
+  box-shadow: 0 0 0 3px hsl(var(--thermal) / 0.3), 0 0 16px hsl(var(--thermal) / 0.7);
+  animation: spring-pulse 2.4s ease-in-out infinite;
+}
+.map-pin.recovery {
+  background: hsl(var(--accent));
+  box-shadow: 0 0 0 2px hsl(var(--accent) / 0.35), 0 0 12px hsl(var(--accent) / 0.6);
+}
+.map-pin.appliance {
+  background: hsl(265 80% 62%);
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px hsl(265 80% 62% / 0.35), 0 0 12px hsl(265 80% 62% / 0.6);
+}
+@keyframes spring-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px hsl(var(--thermal) / 0.3), 0 0 12px hsl(var(--thermal) / 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 7px hsl(var(--thermal) / 0.12), 0 0 22px hsl(var(--thermal) / 0.85);
+  }
+}

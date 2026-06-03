@@ -19,6 +19,7 @@ pub mod isolation;
 pub mod market;
 pub mod memory;
 pub mod mesh;
+pub mod recovery;
 pub mod sensor;
 pub mod witness;
 
@@ -41,6 +42,11 @@ pub use market::{
 };
 pub use memory::{Candidate, DistrictGraph, Embedding, GnnState, Query, EMBEDDING_DIM};
 pub use mesh::{AnomalyContext, CollectiveSignal, Explanation, MeshAction, NodeEvent, UiEvent};
+pub use recovery::{
+    CarbonEquivalents, CarbonReduction, DeviceKind, DevicePlacement, InvestmentEstimate, LossCause,
+    RecoveryParams, RecoveryReport, SavingsProjection, SitingPlan, ThermalLossSite, CAR_CO2E_KG_YR,
+    DEFAULT_RECOVERY_PARAMS, HOME_HEATING_KWH_YR, TREE_CO2E_KG_YR,
+};
 pub use sensor::{Ed25519Signature, QualityScore, RawReading, ThermalFrame, ValidationStatus};
 pub use witness::{PrivilegedAction, WitnessRecord, WITNESS_RECORD_LEN};
 

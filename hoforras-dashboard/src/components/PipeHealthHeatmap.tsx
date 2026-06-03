@@ -5,13 +5,11 @@ import type { JunctionId } from "../events";
 import type { PipeHealth } from "../store";
 import { WitnessLogView, type WitnessLogEntry } from "./WitnessLogView";
 
-/** Resolves the witness-log entries for a junction (injected; reads the audit projection). */
 export type WitnessLogProvider = (junction: JunctionId) => WitnessLogEntry[];
 
 function healthColor(score: number): string {
-  // green (healthy) → red (failing)
-  const hue = Math.round(Math.max(0, Math.min(1, score)) * 120);
-  return `hsl(${hue}, 70%, 45%)`;
+  const hue = Math.round(Math.max(0, Math.min(1, score)) * 130); // red → green
+  return `hsl(${hue} 70% 52%)`;
 }
 
 export function PipeHealthHeatmap({
@@ -22,27 +20,30 @@ export function PipeHealthHeatmap({
   witnessLogFor: WitnessLogProvider;
 }) {
   const [drilled, setDrilled] = useState<JunctionId | null>(null);
-
   return (
     <section aria-label="pipe health heatmap">
-      <div data-testid="heatmap">
-        {pipes.map((p) => (
-          <button
-            key={p.junction}
-            data-testid={`pipe-${p.junction}`}
-            style={{ backgroundColor: healthColor(p.score) }}
-            onClick={() => setDrilled(p.junction)}
-          >
-            J{p.junction}: {(p.score * 100).toFixed(0)}%
-          </button>
-        ))}
+      <div data-testid="heatmap" className="grid grid-cols-4 gap-1.5">
+        {pipes.map((p) => {
+          const c = healthColor(p.score);
+          const selected = drilled === p.junction;
+          return (
+            <button
+              key={p.junction}
+              data-testid={`pipe-${p.junction}`}
+              onClick={() => setDrilled(selected ? null : p.junction)}
+              className="flex flex-col items-center rounded-md border px-1 py-1.5 transition"
+              style={{ borderColor: selected ? c : `${c}44`, background: `${c}14` }}
+            >
+              <span className="text-[10px] font-semibold text-slate-300">J{p.junction}</span>
+              <span className="font-mono text-sm font-semibold" style={{ color: c }}>
+                {(p.score * 100).toFixed(0)}%
+              </span>
+            </button>
+          );
+        })}
       </div>
       {drilled !== null && (
-        <WitnessLogView
-          junction={drilled}
-          entries={witnessLogFor(drilled)}
-          onClose={() => setDrilled(null)}
-        />
+        <WitnessLogView junction={drilled} entries={witnessLogFor(drilled)} onClose={() => setDrilled(null)} />
       )}
     </section>
   );

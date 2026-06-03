@@ -26,6 +26,7 @@ ADRs capture **one architecturally-significant decision each**, in [MADR](https:
 | [ADR-0013](ADR-0013-thermal-credit-economy.md) | Thermal-credit token economy (kWh-equivalent, replaces rUv) | Accepted | S·FR-3.6 |
 | [ADR-0014](ADR-0014-postcard-canonical-bytes.md) | `postcard` canonical serialization for all signed bytes | Accepted | P·§6 |
 | [ADR-0015](ADR-0015-rules-engine-fails-closed.md) | Governance rules are hard limits; rules-engine outage fails closed | Accepted | S·FR-3.7 |
+| [ADR-0016](ADR-0016-thermal-recovery-siting-and-investment.md) | Thermal-recovery siting & investment analysis (advisory planning context) | Proposed | S·FR-10 |
 
 ## Conventions
 - File name: `ADR-NNNN-kebab-title.md`.

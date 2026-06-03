@@ -22,12 +22,24 @@ export interface OperatorSocket {
  * ADR-0007).
  */
 export class WebSocketOperatorFeed implements OperatorSocket {
-  private readonly ws: WebSocket;
+  private readonly ws: WebSocket | null;
   private readonly handlers = new Map<EventName, UiEventHandler[]>();
 
   constructor(url: string = DISTRICT_FEED_URL) {
-    this.ws = new WebSocket(url);
-    this.ws.onmessage = (msg) => this.dispatch(msg.data);
+    // Construction must never crash the dashboard: an unreachable feed, or a blocked insecure
+    // `ws://` from an `https://` page (mixed content), should degrade to an empty read-only view —
+    // not a blank screen. The connection (if any) fails asynchronously and is simply ignored.
+    let ws: WebSocket | null = null;
+    try {
+      ws = new WebSocket(url);
+      ws.onmessage = (msg) => this.dispatch(msg.data);
+      ws.onerror = () => {
+        /* feed unavailable — projections stay empty (read-only) */
+      };
+    } catch {
+      ws = null;
+    }
+    this.ws = ws;
   }
 
   private dispatch(data: string): void {
@@ -50,7 +62,7 @@ export class WebSocketOperatorFeed implements OperatorSocket {
   }
 
   close(): void {
-    this.ws.close();
+    this.ws?.close();
   }
 }
 

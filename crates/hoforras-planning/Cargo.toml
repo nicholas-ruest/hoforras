@@ -1,0 +1,22 @@
+[package]
+name = "hoforras-planning"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Thermal Recovery Planning context (DDD-10 / ADR-0016) — advisory device siting, investment, savings, and carbon estimation."
+
+[dependencies]
+hoforras-domain = { workspace = true }
+hoforras-ports = { workspace = true }
+async-trait = { workspace = true }
+
+[dev-dependencies]
+hoforras-ports = { workspace = true, features = ["mock"] }
+tokio = { workspace = true }
+proptest = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name = "recovery_plan"
+harness = false

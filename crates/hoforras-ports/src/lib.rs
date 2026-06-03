@@ -15,6 +15,7 @@ pub mod consensus;
 pub mod inference;
 pub mod memory;
 pub mod mesh;
+pub mod recovery;
 pub mod security;
 pub mod sensor;
 pub mod time;
@@ -38,6 +39,7 @@ pub use consensus::{ConsensusGateway, DagNetwork, MlDsaSigner, PeerDiscovery};
 pub use inference::{ForecastService, InferenceAgent, SwarmFactory};
 pub use memory::{GnnEngine, VectorIndex};
 pub use mesh::{MeshTransport, NodeRegistry};
+pub use recovery::{LossAnalyzer, RecoveryPlanService, RecoveryPlanner};
 pub use security::{CapabilityGate, MincutEngine, PartitionController, WitnessChain};
 pub use sensor::{
     EventEmitter, QualityScorer, RejectionLog, SensorSource, Validator, WitnessSigner,
