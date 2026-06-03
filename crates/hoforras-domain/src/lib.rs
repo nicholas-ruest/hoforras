@@ -40,7 +40,7 @@ pub use market::{
     Reflection, Strategy, ThermalBalance, TradeOutcome, TradeWindow,
 };
 pub use memory::{Candidate, DistrictGraph, Embedding, GnnState, Query, EMBEDDING_DIM};
-pub use mesh::{AnomalyContext, Explanation, UiEvent};
+pub use mesh::{AnomalyContext, CollectiveSignal, Explanation, MeshAction, NodeEvent, UiEvent};
 pub use sensor::{Ed25519Signature, QualityScore, RawReading, ThermalFrame, ValidationStatus};
 pub use witness::{PrivilegedAction, WitnessRecord, WITNESS_RECORD_LEN};
 

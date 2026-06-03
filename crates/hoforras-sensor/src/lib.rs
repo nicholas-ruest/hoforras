@@ -20,7 +20,7 @@ pub mod pipeline;
 /// Marker proving the crate is wired into the workspace and can reach the ports layer.
 pub const CONTEXT: &str = "sensing-ingestion";
 
-pub use adapters::{Ed25519WitnessAdapter, RvcsiIngestAdapter};
+pub use adapters::{Ed25519WitnessAdapter, RvcsiIngestAdapter, SimSensorAdapter};
 pub use aggregate::ThermalAggregator;
 pub use bus::TypedEventBus;
 pub use pipeline::IngestionPipeline;

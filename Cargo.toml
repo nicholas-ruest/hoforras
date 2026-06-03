@@ -31,6 +31,9 @@ mockall = "0.13"
 sha2 = "0.10"
 ed25519-dalek = "2"
 proptest = "1"
+# --- post-quantum consensus (QuDAG substrate; ADR-0011). NOT used by domain/ports. ---
+fips204 = "0.4"
+ml-kem = { version = "0.3", features = ["getrandom"] }
 # --- runtime / app (node binary) ---
 tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
@@ -42,6 +45,9 @@ trybuild = "1"
 # Internal crates
 hoforras-domain = { path = "crates/hoforras-domain" }
 hoforras-ports = { path = "crates/hoforras-ports" }
+hoforras-sensor = { path = "crates/hoforras-sensor" }
+hoforras-broker = { path = "crates/hoforras-broker" }
+hoforras-mesh = { path = "crates/hoforras-mesh" }
 
 [profile.release]
 lto = true

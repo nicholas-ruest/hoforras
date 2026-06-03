@@ -2,8 +2,8 @@
 
 use async_trait::async_trait;
 use hoforras_domain::{
-    AcceptedTrade, Adaptation, Bid, ExecutedTrade, Gradient, JunctionId, Offer, ProposedTrade,
-    Reflection, RuleVerdict, Strategy, ThermalBalance, TradeOutcome,
+    AcceptedTrade, Adaptation, Bid, Decision, ExecutedTrade, Gradient, JunctionId, Offer,
+    ProposedTrade, Reflection, RuleVerdict, Strategy, ThermalBalance, TradeOutcome,
 };
 
 use crate::PortResult;
@@ -22,6 +22,8 @@ pub trait SeedMesh: Send + Sync {
 pub trait MarketGateway: Send + Sync {
     async fn post_offer(&self, offer: Offer) -> PortResult<()>;
     async fn post_bid(&self, bid: Bid) -> PortResult<()>;
+    /// Await a counterparty match for a posted decision — `None` if none arrived this tick (FR-3.3).
+    async fn await_acceptance(&self, decision: &Decision) -> PortResult<Option<AcceptedTrade>>;
     async fn execute(&self, trade: &AcceptedTrade) -> PortResult<()>;
     async fn route(&self, trade: &AcceptedTrade, path: &[JunctionId]) -> PortResult<()>;
 }

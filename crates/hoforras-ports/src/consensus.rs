@@ -1,7 +1,7 @@
 //! Trade Consensus ports (DDD-05). ACL over QuDAG (ADR-0011). Crypto sync; networking async.
 
 use async_trait::async_trait;
-use hoforras_domain::{DagEntry, Finality, NodeAddr};
+use hoforras_domain::{DagEntry, Finality, NodeAddr, ThermalTradeAgreement};
 
 use crate::PortResult;
 
@@ -24,4 +24,13 @@ pub trait DagNetwork: Send + Sync {
 #[async_trait]
 pub trait PeerDiscovery: Send + Sync {
     async fn resolve(&self, dark_domain: String) -> PortResult<NodeAddr>;
+}
+
+/// The broker-facing consensus boundary (DDD-01 §7 — Anti-Corruption Layer over Trade Consensus).
+/// `BrokerAgent` finalizes an accepted agreement here **before** executing/routing it (FR-5.1/5.3);
+/// the concrete `hoforras-mesh::ConsensusGateway` satisfies this contract (wired in P10).
+#[cfg_attr(any(test, feature = "mock"), mockall::automock)]
+#[async_trait]
+pub trait ConsensusGateway: Send + Sync {
+    async fn finalize(&self, agreement: ThermalTradeAgreement) -> PortResult<Finality>;
 }

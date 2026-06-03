@@ -4,7 +4,7 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
-description = "Hőforrás Appliance binary + Node Isolation/Forecasting/Memory contexts (DDD-04/03/06). P1: Node Isolation & Security implemented."
+description = "Hőforrás Appliance binary + Node Isolation/Forecasting/Memory contexts (DDD-04/03/06). P1: Node Isolation & Security, P3: Forecasting & Anomaly, P4: Thermal Memory implemented."
 
 [lib]
 name = "hoforras_node"
@@ -17,10 +17,16 @@ path = "src/main.rs"
 [dependencies]
 hoforras-domain = { workspace = true }
 hoforras-ports = { workspace = true }
+# Completion (P10): the Appliance assembles every context behind one tokio runtime (ADR-0010).
+hoforras-sensor = { workspace = true }
+hoforras-broker = { workspace = true }
+hoforras-mesh = { workspace = true }
 tokio = { workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 sha2 = { workspace = true }
+async-trait = { workspace = true }
+serde_json = { workspace = true }
 
 [dev-dependencies]
 hoforras-ports = { workspace = true, features = ["mock"] }
@@ -30,4 +36,12 @@ criterion = { workspace = true }
 
 [[bench]]
 name = "isolation_path"
+harness = false
+
+[[bench]]
+name = "inference_path"
+harness = false
+
+[[bench]]
+name = "memory_search"
 harness = false

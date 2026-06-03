@@ -26,12 +26,15 @@ mod port_mock_tests;
 pub type PortResult<T> = Result<T, hoforras_domain::DomainError>;
 
 // Convenience re-exports of every port trait.
-pub use ai::{ClaudeReasoner, McpToolRegistry, OperatorChannel};
+pub use ai::{
+    AnomalyQueryService, ClaudeReasoner, DistrictStatusService, ForecastQueryService,
+    McpToolRegistry, OperatorChannel, PipeHealthService, TradeQueryService,
+};
 pub use broker::{
     EconomyLedger, GradientAggregator, MarketGateway, RulesEngine, SeedMesh, StrategyStore,
     TradeEvaluator,
 };
-pub use consensus::{DagNetwork, MlDsaSigner, PeerDiscovery};
+pub use consensus::{ConsensusGateway, DagNetwork, MlDsaSigner, PeerDiscovery};
 pub use inference::{ForecastService, InferenceAgent, SwarmFactory};
 pub use memory::{GnnEngine, VectorIndex};
 pub use mesh::{MeshTransport, NodeRegistry};

@@ -1,0 +1,5 @@
+# Node / Vite build artifacts
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/

@@ -9,7 +9,12 @@
 //! **reference in-process implementations** behind the `hoforras-ports` traits (ADR-0001 makes them
 //! swappable for the real RVM crates later, with no change to the domain units).
 //!
-//! Forecasting (DDD-03) and Thermal Memory (DDD-06) also live in this crate and are implemented in
-//! Prompts 3 and 4.
+//! **Forecasting & Anomaly (DDD-03)** is implemented here too (`forecast`): on-device, edge-only
+//! inference (ADR-0012) over ephemeral ruv-swarm agents. **Thermal Memory (DDD-06)** is in `memory`:
+//! deterministic 128-dim embeddings + RuVector similarity search / GNN. Both are node-local, within
+//! the same RVM boundary as ingestion (ADR-0009).
 
+pub mod appliance;
+pub mod forecast;
 pub mod isolation;
+pub mod memory;

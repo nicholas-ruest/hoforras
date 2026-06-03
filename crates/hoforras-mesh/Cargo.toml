@@ -4,11 +4,31 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
-description = "Trade Consensus, District Mesh, AI Orchestration contexts (DDD-05/07/08). Skeleton — implemented in Prompts 5/6/8."
+description = "Trade Consensus, District Mesh, AI Orchestration contexts (DDD-05/07/08). P5 Consensus (ML-DSA/ML-KEM), P6 District Mesh, P8 AI Orchestration implemented."
 
 [dependencies]
 hoforras-domain = { workspace = true }
 hoforras-ports = { workspace = true }
+async-trait = { workspace = true }
+serde_json = { workspace = true }
+fips204 = { workspace = true }
+ml-kem = { workspace = true }
 
 [dev-dependencies]
 hoforras-ports = { workspace = true, features = ["mock"] }
+tokio = { workspace = true }
+mockall = { workspace = true }
+criterion = { workspace = true }
+proptest = { workspace = true }
+
+[[bench]]
+name = "consensus_finality"
+harness = false
+
+[[bench]]
+name = "mesh_resync"
+harness = false
+
+[[bench]]
+name = "tool_invocation"
+harness = false

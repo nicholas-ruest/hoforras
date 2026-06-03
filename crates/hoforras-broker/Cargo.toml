@@ -4,11 +4,21 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
-description = "Thermal Market & Brokerage core domain (DDD-01). Skeleton — implemented in Prompt 7."
+description = "CORE Thermal Market & Brokerage context (DDD-01). P7: BrokerAgent MRAP loop, governance fail-closed, gradient-only egress, thermal credits."
 
 [dependencies]
 hoforras-domain = { workspace = true }
 hoforras-ports = { workspace = true }
+async-trait = { workspace = true }
+tokio = { workspace = true }
 
 [dev-dependencies]
 hoforras-ports = { workspace = true, features = ["mock"] }
+tokio = { workspace = true }
+mockall = { workspace = true }
+proptest = { workspace = true }
+criterion = { workspace = true }
+
+[[bench]]
+name = "tick_loop"
+harness = false
