@@ -4,6 +4,11 @@
 # trybuild scratch output
 **/wip/
 
-# Claude Code / claude-flow local & runtime state
-.claude/settings.local.json
+# Claude Code / claude-flow — config, agents, commands, runtime state
+.claude/
 .claude-flow/
+CLAUDE.md
+.mcp.json
+
+# UI design-reference template (not part of the app)
+COGS_UI_Template/
