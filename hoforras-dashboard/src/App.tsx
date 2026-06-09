@@ -134,19 +134,19 @@ export function DistrictDashboard({
           ) : (
             report && (
               <>
-                <Card title="Loss & Siting Plan" sub="device placement" right={<AdvisoryBadge />}>
+                <Card className="shrink-0" title="Loss & Siting Plan" sub="device placement" right={<AdvisoryBadge />}>
                   <SitingPlanView report={report} />
                 </Card>
-                <Card title="Investment" sub="CapEx · OpEx · payback">
+                <Card className="shrink-0" title="Investment" sub="CapEx · OpEx · payback">
                   <InvestmentView report={report} />
                 </Card>
-                <Card title="Energy Savings" sub="recovered heat">
+                <Card className="shrink-0" title="Energy Savings" sub="recovered heat">
                   <SavingsView report={report} />
                 </Card>
-                <Card title="Carbon Reduction" sub="GHG avoided">
+                <Card className="shrink-0" title="Carbon Reduction" sub="GHG avoided">
                   <CarbonView report={report} />
                 </Card>
-                <ul className="px-1 text-[10px] leading-relaxed text-slate-600">
+                <ul className="shrink-0 px-1 text-[10px] leading-relaxed text-slate-600">
                   {report.assumptions.map((a, i) => (
                     <li key={i}>· {a}</li>
                   ))}
